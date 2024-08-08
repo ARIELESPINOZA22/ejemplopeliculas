@@ -7,7 +7,7 @@ import com.example.listviewadd.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private var peliculas = emptyArray<String>()
+     var peliculas: ArrayList<movie> = ArrayList()
     lateinit var arrayAdapter: ArrayAdapter<*>
     private lateinit var binding: ActivityMainBinding
 
@@ -16,11 +16,12 @@ class MainActivity : AppCompatActivity() {
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-       val peliculas = arrayOf(
-           "titanic","deepool","los vengadores","triplex",
-       )
+        peliculas.add( movie("titanic",2000,"",""))
+        peliculas.add( movie("vengadores",2012,"",""))
+        peliculas.add( movie("xmen",2020,"",""))
+        peliculas.add( movie("gladiador",2003,"",""))
 
-        var itemsAdapter = ArrayAdapter<String>(MainActivity@this, android.R.layout.simple_list_item_1,peliculas)
-        binding.listviewpeliculas.adapter=itemsAdapter
+        var adapter= MyAdapter(this, peliculas)
+        binding.listviewpeliculas.adapter=adapter
     }
 }
